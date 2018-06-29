@@ -8,7 +8,11 @@ let width = $('#inputWidth').val();
 // select canvas
 const canvas = document.getElementById('colorPicker').innerHTML;
 
-// When size is submitted by the user, call makeGrid()
+// event listner that calls makeGrid function on submit button
+$('#submit').click(function(evt){
+    evt.preventDefault();
+    makeGrid();
+})
 
 // function that creates grid and adds the selected color
 function makeGrid() {
@@ -18,7 +22,6 @@ function makeGrid() {
             cell.style.backgroundColor = color;
         });
     }
-
     //create grid and adds color to cell
     for(let i=0; i<height; i++){
         let row = canvas.insertRow(i);
