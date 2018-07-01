@@ -1,33 +1,38 @@
-// Select color input and value
-let color = $('#colorPicker').val();
 
-// Select size input and value
-let height = $('#inputHeight').val();
-let width = $('#inputWidth').val();
+//variables to get canvas element,height,width and color input
+const canvas = document.getElementById('pixelCanvas');
+let tempH = $("#inputHeight");
+let tempW = $("#inputWidth");
+let color = $("#colorPicker");
 
-// select canvas
-const canvas = document.getElementById('colorPicker').innerHTML;
-
-// event listner that calls makeGrid function on submit button
-$('#submit').click(function(evt){
+// Event listner that calls make grid function on submit button .
+$('#submit').click(function(evt) {
     evt.preventDefault();
     makeGrid();
-})
+});
 
-// function that creates grid and adds the selected color
+
+
+// Function that creates grid and adds the selected color.
 function makeGrid() {
-    //function that fills in color in a clicked cell
-    let addColor = function(cell){
-        cell.addEventListner('click', function(){
-            cell.style.backgroundColor = color;
+
+    canvas.innerHTML = '';
+    let height = tempH.val();
+    let width = tempW.val();
+
+    // Function that fills in color in a clicked cell.
+    let addColor = function(cell) {
+        cell.addEventListener('click', function() {
+            cell.style.backgroundColor = color.val();
         });
     }
-    //create grid and adds color to cell
-    for(let i=0; i<height; i++){
+
+    // Creates grid and adds color to cell.
+    for (let i = 0; i < height; i++) {
         let row = canvas.insertRow(i);
-        for(let j=0; j<width; j++){
+        for (let j = 0; j < width; j++) {
             let cell = row.insertCell(j);
-            cell.addEventListner('click', addColor(cell));
+            cell.addEventListener('click', addColor(cell));
         }
     }
 }
